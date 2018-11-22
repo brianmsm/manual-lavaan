@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)</title>
+  <meta name="description" content="Este es una breve guía acerca de los fundamentos y procedimientos actuales sobre Análisis Factorial Confirmatorio (SEM).">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/conver-temp.png" />
+  <meta property="og:description" content="Este es una breve guía acerca de los fundamentos y procedimientos actuales sobre Análisis Factorial Confirmatorio (SEM)." />
+  <meta name="github-repo" content="brianmsm/manual-lavaan" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)" />
+  
+  <meta name="twitter:description" content="Este es una breve guía acerca de los fundamentos y procedimientos actuales sobre Análisis Factorial Confirmatorio (SEM)." />
+  <meta name="twitter:image" content="images/conver-temp.png" />
+
+<meta name="author" content="Brian N. Peña Calero(1,2,*)">
+
+
+<meta name="date" content="2018-11-22">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="introduccion.html">
+<link rel="next" href="referencias.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Potencia de R para el Análisis Factorial Confirmatorio (SEM)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Carátula</a></li>
+<li class="chapter" data-level="" data-path="presentacion.html"><a href="presentacion.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#fundamentos-de-analisis-factorial-confirmatorio"><i class="fa fa-check"></i><b>1.1</b> Fundamentos de Análisis Factorial Confirmatorio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#procedimientos-para-realizar-un-afc"><i class="fa fa-check"></i><b>1.2</b> Procedimientos para realizar un AFC</a></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#algunas-sugerencias-y-materiales-de-lectura"><i class="fa fa-check"></i><b>1.3</b> Algunas sugerencias y materiales de lectura</a></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#preparandonos"><i class="fa fa-check"></i><b>1.4</b> Preparándonos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html"><i class="fa fa-check"></i><b>2</b> Primeros pasos en el Análisis</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html#importar-datos-y-reconocer-variables"><i class="fa fa-check"></i><b>2.1</b> Importar datos y reconocer variables</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html#sintaxis-de-lavaan-especificacion"><i class="fa fa-check"></i><b>2.2</b> Sintaxis de Lavaan (Especificación)</a></li>
+<li class="chapter" data-level="2.3" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html#identificacion-estimacion-y-evaluacion"><i class="fa fa-check"></i><b>2.3</b> Identificación, Estimación y Evaluación</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html#re-especificacion"><i class="fa fa-check"></i><b>2.4</b> Re-Especificación</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/brianmsm/manual-lavaan" target="blank">Publicado en Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="primeros-pasos-en-el-analisis" class="section level1">
+<h1><span class="header-section-number">2</span> Primeros pasos en el Análisis</h1>
+<p>Empezaremos con un primer análisis utulizando una base de datos de acceso libre y de las más difundidas para el AFC. Se trata de la BD de <span class="citation">Holzinger &amp; Swineford (<a href="referencias.html#ref-holzinger1939">1939</a>)</span> que recolecta información de una prueba de Habilidades Cognitivas conformado por 26 test en séptimo y octavo grado de dos colegios diferentes (Pasteur y Grant-White). Para este procedimiento se utilizará los datos recortados a 9 pruebas que se estructuran en 3 factores latentes: Visual, Textual y Velocidad.</p>
+
+<table>
+<caption><span id="tab:holzinger-estructura">Table 2.1: </span>Estructura de la prueba de <span class="citation">Holzinger &amp; Swineford (<a href="referencias.html#ref-holzinger1939">1939</a>)</span>.</caption>
+<thead>
+<tr class="header">
+<th align="center">Factores</th>
+<th align="center">Indicadores</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Factor Visual</td>
+<td align="center">X1, X2 y X3</td>
+</tr>
+<tr class="even">
+<td align="center">Factor Textual</td>
+<td align="center">X4, X5 y X6</td>
+</tr>
+<tr class="odd">
+<td align="center">Factor Velocidad</td>
+<td align="center">X7, X8 y X9</td>
+</tr>
+</tbody>
+</table>
+<p>Es importante conocer la estructura propuesta del instrumento a analizar (Table <a href="primeros-pasos-en-el-analisis.html#tab:holzinger-estructura">2.1</a>) debido a que el ajuste de los modelos calculados requieren tener un marco explicativo y referencial.</p>
+<div id="importar-datos-y-reconocer-variables" class="section level2">
+<h2><span class="header-section-number">2.1</span> Importar datos y reconocer variables</h2>
+<p>Empezaremos con algunas funciones sencillas que nos ayuden a entender la forma de trabajo de R previo al flujo de análisis de AFC propiamente. En caso de no haber cargado aún el paquete, o solo necesitar una función única del mismo, podrías solicitarlo mediante la indicación:</p>
+<pre><code>   package::function(...)</code></pre>
+<p>Lo indicado arriba estará solicitando una función <strong>function</strong> del paquete <strong>package</strong> de forma específica. ¡Probemos!</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Solicitamos ver la BD</span>
+<span class="kw">head</span>(lavaan<span class="op">::</span>HolzingerSwineford1939)</code></pre>
+<pre><code>##   id sex ageyr agemo  school grade       x1   x2    x3       x4   x5
+## 1  1   1    13     1 Pasteur     7 3.333333 7.75 0.375 2.333333 5.75
+## 2  2   2    13     7 Pasteur     7 5.333333 5.25 2.125 1.666667 3.00
+## 3  3   2    13     1 Pasteur     7 4.500000 5.25 1.875 1.000000 1.75
+## 4  4   1    13     2 Pasteur     7 5.333333 7.75 3.000 2.666667 4.50
+## 5  5   2    12     2 Pasteur     7 4.833333 4.75 0.875 2.666667 4.00
+## 6  6   2    14     1 Pasteur     7 5.333333 5.00 2.250 1.000000 3.00
+##          x6       x7   x8       x9
+## 1 1.2857143 3.391304 5.75 6.361111
+## 2 1.2857143 3.782609 6.25 7.916667
+## 3 0.4285714 3.260870 3.90 4.416667
+## 4 2.4285714 3.000000 5.30 4.861111
+## 5 2.5714286 3.695652 6.30 5.916667
+## 6 0.8571429 4.347826 6.65 7.500000</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ¡Quiero orden!</span>
+tibble<span class="op">::</span><span class="kw">as_tibble</span>(lavaan<span class="op">::</span>HolzingerSwineford1939) </code></pre>
+<pre><code>## # A tibble: 301 x 15
+##       id   sex ageyr agemo scho… grade    x1    x2    x3    x4    x5    x6
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     1     1    13     1 Past…     7  3.33  7.75 0.375  2.33  5.75 1.29 
+##  2     2     2    13     7 Past…     7  5.33  5.25 2.12   1.67  3    1.29 
+##  3     3     2    13     1 Past…     7  4.5   5.25 1.88   1     1.75 0.429
+##  4     4     1    13     2 Past…     7  5.33  7.75 3      2.67  4.5  2.43 
+##  5     5     2    12     2 Past…     7  4.83  4.75 0.875  2.67  4    2.57 
+##  6     6     2    14     1 Past…     7  5.33  5    2.25   1     3    0.857
+##  7     7     1    12     1 Past…     7  2.83  6    1      3.33  6    2.86 
+##  8     8     2    12     2 Past…     7  5.67  6.25 1.88   3.67  4.25 1.29 
+##  9     9     2    13     0 Past…     7  4.5   5.75 1.5    2.67  5.75 2.71 
+## 10    11     2    12     5 Past…     7  3.5   5.25 0.75   2.67  5    2.57 
+## # ... with 291 more rows, and 3 more variables: x7 &lt;dbl&gt;, x8 &lt;dbl&gt;,
+## #   x9 &lt;dbl&gt;</code></pre>
+<p>Hemos realizado dos formas de poder visualizar los datos. Definitivamente la segunda manera nos permite visualizar los datos de forma ordenada. Antes de ir al análisis, necesitamos que R guarde estos datos en un <strong>objeto</strong>, es decir un nombre que permita identificarlo (lo veremos en el <em>ambiente</em> [Environment]). Para ello necesitamos utilizar la designación “&lt;-” (alt + -) como lo veremos abajo.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Guardaremos la BD</span>
+datos &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>(             <span class="co"># Guardemos la BD en &quot;data&quot;</span>
+    lavaan<span class="op">::</span>HolzingerSwineford1939     <span class="co"># Esta es la BD</span>
+    ) 
+<span class="kw">View</span>(datos)</code></pre>
+<p>¡Muy bien! Lo hemos logrado. Si vemos al recuadro superior derecho, podemos ver que en el entorno “ambiente” ahora aparece “data” indicando que posee 301 observaciones y 15 variables. Podemos tener más información si lo que queremos es focalizarnos en
+las variables. Podemos usar la función <em>names</em> para tener un listado de las variables de un data.frame (BD) y la función <strong>glimpse</strong> del paquete <strong>dplyr</strong> para ver las propiedades de las variables (además del listado del mismo).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(datos)             <span class="co"># Listado de variables</span></code></pre>
+<pre><code>##  [1] &quot;id&quot;     &quot;sex&quot;    &quot;ageyr&quot;  &quot;agemo&quot;  &quot;school&quot; &quot;grade&quot;  &quot;x1&quot;    
+##  [8] &quot;x2&quot;     &quot;x3&quot;     &quot;x4&quot;     &quot;x5&quot;     &quot;x6&quot;     &quot;x7&quot;     &quot;x8&quot;    
+## [15] &quot;x9&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">glimpse</span>(datos)    <span class="co"># Listado y propiedades de variables</span></code></pre>
+<pre><code>## Observations: 301
+## Variables: 15
+## $ id     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, ...
+## $ sex    &lt;int&gt; 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2...
+## $ ageyr  &lt;int&gt; 13, 13, 13, 13, 12, 14, 12, 12, 13, 12, 12, 12, 12, 12,...
+## $ agemo  &lt;int&gt; 1, 7, 1, 2, 2, 1, 1, 2, 0, 5, 2, 11, 7, 8, 6, 1, 11, 5,...
+## $ school &lt;fct&gt; Pasteur, Pasteur, Pasteur, Pasteur, Pasteur, Pasteur, P...
+## $ grade  &lt;int&gt; 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7...
+## $ x1     &lt;dbl&gt; 3.333333, 5.333333, 4.500000, 5.333333, 4.833333, 5.333...
+## $ x2     &lt;dbl&gt; 7.75, 5.25, 5.25, 7.75, 4.75, 5.00, 6.00, 6.25, 5.75, 5...
+## $ x3     &lt;dbl&gt; 0.375, 2.125, 1.875, 3.000, 0.875, 2.250, 1.000, 1.875,...
+## $ x4     &lt;dbl&gt; 2.333333, 1.666667, 1.000000, 2.666667, 2.666667, 1.000...
+## $ x5     &lt;dbl&gt; 5.75, 3.00, 1.75, 4.50, 4.00, 3.00, 6.00, 4.25, 5.75, 5...
+## $ x6     &lt;dbl&gt; 1.2857143, 1.2857143, 0.4285714, 2.4285714, 2.5714286, ...
+## $ x7     &lt;dbl&gt; 3.391304, 3.782609, 3.260870, 3.000000, 3.695652, 4.347...
+## $ x8     &lt;dbl&gt; 5.75, 6.25, 3.90, 5.30, 6.30, 6.65, 6.20, 5.15, 4.65, 4...
+## $ x9     &lt;dbl&gt; 6.361111, 7.916667, 4.416667, 4.861111, 5.916667, 7.500...</code></pre>
+<p>¡Perfecto! Hemos cargado una base de datos y reconocido el contenido de los datos que vamos a utilizar. <strong>¡Estamos listos para empezar con la acción!</strong></p>
+</div>
+<div id="sintaxis-de-lavaan-especificacion" class="section level2">
+<h2><span class="header-section-number">2.2</span> Sintaxis de Lavaan (Especificación)</h2>
+<p>Lo primero que haremos es especificar el modelo (estructura factorial) de la prueba tal y como se encuentra indicado en la Tabla <a href="primeros-pasos-en-el-analisis.html#tab:holzinger-estructura">2.1</a>. ¿Cómo especificamos? ¡Simple! Solo debemos indicarle a R qué variables forman los factores (variables latentes) y la relación que hay entre los mismos. Para indicar las relaciones existentes se tiene las siguientes indicaciones de la Tabla <a href="primeros-pasos-en-el-analisis.html#tab:sintaxis-lavaan">2.2</a>:</p>
+
+<table>
+<caption><span id="tab:sintaxis-lavaan">Table 2.2: </span>Sintaxis para la Especificación en Lavaan.</caption>
+<thead>
+<tr class="header">
+<th align="left">Sintaxis</th>
+<th align="left">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">=~</td>
+<td align="left">Conformación de una variable latente</td>
+</tr>
+<tr class="even">
+<td align="left">~</td>
+<td align="left">Regresión</td>
+</tr>
+<tr class="odd">
+<td align="left">~~</td>
+<td align="left">Co-varianza entre errores o varianza del indicador</td>
+</tr>
+<tr class="even">
+<td align="left">~ 1</td>
+<td align="left">Interceptos</td>
+</tr>
+</tbody>
+</table>
+<p>Para la especificación de un AFC nos interesa indicarle a R las variables latentes y su conformación (=~) y la co-varianza entre los errores (~~) principalmente (o al menos por el nivel básico explorado). ¡Vamos a ello!</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Se crea un objeto &quot;model&quot; donde se almacena la información</span>
+<span class="co"># acerca de la especificación del instrumento</span>
+model &lt;-<span class="st">  &quot; visual  =~ x1 + x2 + x3</span>
+<span class="st">            textual =~ x4 + x5 + x6</span>
+<span class="st">            speed   =~ x7 + x8 + x9 &quot;</span></code></pre>
+<p>¡Así de simple! Se está creando un objeto llamado <em>model</em> que usaremos para solicitarle a R que identifique el modelo y realice la estimación del mismo. Esta especificación precisa que existen tres factores <strong>visual</strong>, <strong>textual</strong> y <strong>speed</strong> que se encuentran conformados por 3 indicadores cada uno.</p>
+</div>
+<div id="identificacion-estimacion-y-evaluacion" class="section level2">
+<h2><span class="header-section-number">2.3</span> Identificación, Estimación y Evaluación</h2>
+<p>¡Ahora vamos a identificar y estimar! ¡Si! Los dos pasos al mismo tiempo utilizando la función <strong>cfa</strong> del paquete <strong>lavaan</strong>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cargamos el paquete</span>
+<span class="kw">library</span>(lavaan)</code></pre>
+<pre><code>## This is lavaan 0.6-3</code></pre>
+<pre><code>## lavaan is BETA software! Please report any bugs.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Almacenamos en el objeto &quot;fit&quot; la información de la estimación</span>
+fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(<span class="dt">model =</span> model,
+           <span class="dt">data  =</span> datos)</code></pre>
+<p>¡Ya está! Veamos el entorno <em>ambiente</em>. Hemos creado un objeto adicional de clase <em>lavaan</em> llamado <strong>fit</strong>. La función <strong>cfa</strong> es un wrapper de la función general <em>lavaan</em>, es decir que automatiza una gran cantidad de especificaciones como las varianzas individuales de las variables, correlaciones de errores establecidas a 0, y el hecho de tratar a los factores especificados como <em>oblicuos</em>, es decir que se encuentra correlacionados entre ellos.
+Dicho esta aclaración sobre lo que acabamos de hacer, procederemos a verificar la evaluación de nuestro modelo factorial almacenado en <strong>fit</strong>. Para esto usaremos a la conocida función <strong>summary</strong> que nos devolverá de forma <em>organizada</em> parte de lo estimado. ¡Hagámoslo!</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(datos) <span class="co">## ¡Ups! Nos confundimos, parece ser que hace eso mismo: ¡Resumir!</span></code></pre>
+<pre><code>##        id             sex            ageyr        agemo       
+##  Min.   :  1.0   Min.   :1.000   Min.   :11   Min.   : 0.000  
+##  1st Qu.: 82.0   1st Qu.:1.000   1st Qu.:12   1st Qu.: 2.000  
+##  Median :163.0   Median :2.000   Median :13   Median : 5.000  
+##  Mean   :176.6   Mean   :1.515   Mean   :13   Mean   : 5.375  
+##  3rd Qu.:272.0   3rd Qu.:2.000   3rd Qu.:14   3rd Qu.: 8.000  
+##  Max.   :351.0   Max.   :2.000   Max.   :16   Max.   :11.000  
+##                                                               
+##          school        grade             x1               x2       
+##  Grant-White:145   Min.   :7.000   Min.   :0.6667   Min.   :2.250  
+##  Pasteur    :156   1st Qu.:7.000   1st Qu.:4.1667   1st Qu.:5.250  
+##                    Median :7.000   Median :5.0000   Median :6.000  
+##                    Mean   :7.477   Mean   :4.9358   Mean   :6.088  
+##                    3rd Qu.:8.000   3rd Qu.:5.6667   3rd Qu.:6.750  
+##                    Max.   :8.000   Max.   :8.5000   Max.   :9.250  
+##                    NA&#39;s   :1                                       
+##        x3              x4              x5              x6        
+##  Min.   :0.250   Min.   :0.000   Min.   :1.000   Min.   :0.1429  
+##  1st Qu.:1.375   1st Qu.:2.333   1st Qu.:3.500   1st Qu.:1.4286  
+##  Median :2.125   Median :3.000   Median :4.500   Median :2.0000  
+##  Mean   :2.250   Mean   :3.061   Mean   :4.341   Mean   :2.1856  
+##  3rd Qu.:3.125   3rd Qu.:3.667   3rd Qu.:5.250   3rd Qu.:2.7143  
+##  Max.   :4.500   Max.   :6.333   Max.   :7.000   Max.   :6.1429  
+##                                                                  
+##        x7              x8               x9       
+##  Min.   :1.304   Min.   : 3.050   Min.   :2.778  
+##  1st Qu.:3.478   1st Qu.: 4.850   1st Qu.:4.750  
+##  Median :4.087   Median : 5.500   Median :5.417  
+##  Mean   :4.186   Mean   : 5.527   Mean   :5.374  
+##  3rd Qu.:4.913   3rd Qu.: 6.100   3rd Qu.:6.083  
+##  Max.   :7.435   Max.   :10.000   Max.   :9.250  
+## </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Muestrame acerca de lo estimado entonces</span>
+<span class="kw">summary</span>(fit)  </code></pre>
+<pre><code>## lavaan 0.6-3 ended normally after 35 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                         21
+## 
+##   Number of observations                           301
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                      85.306
+##   Degrees of freedom                                24
+##   P-value (Chi-square)                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+##   Standard Errors                             Standard
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   visual =~                                           
+##     x1                1.000                           
+##     x2                0.554    0.100    5.554    0.000
+##     x3                0.729    0.109    6.685    0.000
+##   textual =~                                          
+##     x4                1.000                           
+##     x5                1.113    0.065   17.014    0.000
+##     x6                0.926    0.055   16.703    0.000
+##   speed =~                                            
+##     x7                1.000                           
+##     x8                1.180    0.165    7.152    0.000
+##     x9                1.082    0.151    7.155    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   visual ~~                                           
+##     textual           0.408    0.074    5.552    0.000
+##     speed             0.262    0.056    4.660    0.000
+##   textual ~~                                          
+##     speed             0.173    0.049    3.518    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .x1                0.549    0.114    4.833    0.000
+##    .x2                1.134    0.102   11.146    0.000
+##    .x3                0.844    0.091    9.317    0.000
+##    .x4                0.371    0.048    7.779    0.000
+##    .x5                0.446    0.058    7.642    0.000
+##    .x6                0.356    0.043    8.277    0.000
+##    .x7                0.799    0.081    9.823    0.000
+##    .x8                0.488    0.074    6.573    0.000
+##    .x9                0.566    0.071    8.003    0.000
+##     visual            0.809    0.145    5.564    0.000
+##     textual           0.979    0.112    8.737    0.000
+##     speed             0.384    0.086    4.451    0.000</code></pre>
+<p>¡Que elegancia! No nos asustemos. Vamos a entenderlo paso a paso, de las manitos. No nos soltemos. Respiremos y empecemos por la primera parte. Vemos que el “output” (resultados en consola) nos indica la versión de “lavaan”, el número de parámetros libres que tenemos en el modelo, número de casos analizados, método de estimación utilizado (máxima verosimilitud), valor de chi cuadrado (Model Fit Test Statistic), grados de libertad (sobre identificado), valor p de la prueba de bondad de ajuste (chi cuadrado) e información adicional que por ahora no será de nuestra preocupación.</p>
+<p>En el apartado de “Latent Variables” (Variables Latentes) podemos ver la estimación sin estandarizar de los indicadores frente a la variable latente, erores estándares de la estimación, valor Z y valor p del mismo. Con respecto al apartado “Covariances”, sigue la misma estructura que arriba centrándose en las relaciones entre factores (variables latentes). Recordemos que al usar la función “cfa” por defecto se configura en “oblicuo” (factores correlacionados). Por último, en el apartado de las varianzas lo único de lo que nos preocuparemos por ahora es el no encontrar valores estimados (no se encuentran estadarizados) que sean positivos. En caso de encontrar uno negativo, estaremos frente a un caso Heywood!</p>
+<p>Es probable que esta explicación, a pesar de mantenerse de forma simple, te haya parecido algo compleja. Es normal sentirlo de esa forma si recién estás teniendo contacto con este tipo de análisis. Te alegrará saber que, aunque hay mucha información para ver y revisar, a lo que debemos prestar atención es a los índices de ajuste del modelo y a las estimaciones estandarizadas. Será lo principal. ¡Espera! ¿Y donde se encuentra todo eso?</p>
+<p>Calma, toda esta información se encuentra almacenada en el objeto “fit”, solo que al momento de solicitar el “output” con la función “summary”, no hemos sido más precisos en lo que queremos que nos muestre. Para las dos menciones que deseamos poder ver y revisar usaremos dos argumentos adicionales. Si deseamos que se adicione la información sobre índices de ajuste, la función quedará así:</p>
+<pre><code>summary(..., fit.measures = TRUE)</code></pre>
+<p>Si deseamos que se adicione información estandarizada, la función quedará así:</p>
+<pre><code>summary(..., standardized = TRUE)</code></pre>
+<p>Así, en caso de querer ambas cosas, solo hará falta poner esos dos argumentos en la misma solicitud:</p>
+<pre><code>summary(..., fit.measures = TRUE, standardized = TRUE)</code></pre>
+<p>¡Probemos!</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Solicitar el resumen del análisis adicionando las medidas estandarizadas </span>
+<span class="co"># y los índices de ajuste</span>
+<span class="kw">summary</span>(fit, <span class="dt">fit.measures =</span> <span class="ot">TRUE</span>, <span class="dt">standardized =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>## lavaan 0.6-3 ended normally after 35 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                         21
+## 
+##   Number of observations                           301
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                      85.306
+##   Degrees of freedom                                24
+##   P-value (Chi-square)                           0.000
+## 
+## Model test baseline model:
+## 
+##   Minimum Function Test Statistic              918.852
+##   Degrees of freedom                                36
+##   P-value                                        0.000
+## 
+## User model versus baseline model:
+## 
+##   Comparative Fit Index (CFI)                    0.931
+##   Tucker-Lewis Index (TLI)                       0.896
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)              -3737.745
+##   Loglikelihood unrestricted model (H1)      -3695.092
+## 
+##   Number of free parameters                         21
+##   Akaike (AIC)                                7517.490
+##   Bayesian (BIC)                              7595.339
+##   Sample-size adjusted Bayesian (BIC)         7528.739
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.092
+##   90 Percent Confidence Interval          0.071  0.114
+##   P-value RMSEA &lt;= 0.05                          0.001
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.065
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+##   Standard Errors                             Standard
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##   visual =~                                                             
+##     x1                1.000                               0.900    0.772
+##     x2                0.554    0.100    5.554    0.000    0.498    0.424
+##     x3                0.729    0.109    6.685    0.000    0.656    0.581
+##   textual =~                                                            
+##     x4                1.000                               0.990    0.852
+##     x5                1.113    0.065   17.014    0.000    1.102    0.855
+##     x6                0.926    0.055   16.703    0.000    0.917    0.838
+##   speed =~                                                              
+##     x7                1.000                               0.619    0.570
+##     x8                1.180    0.165    7.152    0.000    0.731    0.723
+##     x9                1.082    0.151    7.155    0.000    0.670    0.665
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##   visual ~~                                                             
+##     textual           0.408    0.074    5.552    0.000    0.459    0.459
+##     speed             0.262    0.056    4.660    0.000    0.471    0.471
+##   textual ~~                                                            
+##     speed             0.173    0.049    3.518    0.000    0.283    0.283
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##    .x1                0.549    0.114    4.833    0.000    0.549    0.404
+##    .x2                1.134    0.102   11.146    0.000    1.134    0.821
+##    .x3                0.844    0.091    9.317    0.000    0.844    0.662
+##    .x4                0.371    0.048    7.779    0.000    0.371    0.275
+##    .x5                0.446    0.058    7.642    0.000    0.446    0.269
+##    .x6                0.356    0.043    8.277    0.000    0.356    0.298
+##    .x7                0.799    0.081    9.823    0.000    0.799    0.676
+##    .x8                0.488    0.074    6.573    0.000    0.488    0.477
+##    .x9                0.566    0.071    8.003    0.000    0.566    0.558
+##     visual            0.809    0.145    5.564    0.000    1.000    1.000
+##     textual           0.979    0.112    8.737    0.000    1.000    1.000
+##     speed             0.384    0.086    4.451    0.000    1.000    1.000</code></pre>
+<p>Está bien, no hay problema. Solo se agregaron unas líneas más al “output”. ¡Podemos manejarlo! En la primera parte del “output” se adicionó cuatro de los índices de ajuste más comunes: CFI (&gt;= .95), TLI (&gt;= .95), RMSEA (&lt;= .05) y SRMR (&lt;= .06).</p>
+<p>Estos índices de ajuste nos permitirán decidir si, el modelo tal y como se encuentra especificado guarda coherencia estadística. En la parte de abajo (Latent Variables, Covariances y Variances) se ha agregado dos columnas <em>Std.lv</em> y <em>Std.all</em>. Nosotros nos concentraremos en “Std.all” debido a que representa la estimación estandarizada a todo el modelo (varía entre -1 y 1). Mientras más alto mejor.</p>
+<p>Antes de pasar a ver como podemos mejorar nuestro modelo ya que presenta valores en sus ajustes que no llegan a ser del todo satisfactorios, veremos otra forma de visualizar los resultados que puede ser un tanto más amigable.</p>
+</div>
+<div id="re-especificacion" class="section level2">
+<h2><span class="header-section-number">2.4</span> Re-Especificación</h2>
+<p>Vemaos como mejorar nuestro modelo ya que presenta valores en sus ajustes que no llegan a ser del todo satisfactorios. En este punto, la reflexión teórica debería darnos algunas pistas sobre el mal funcionamiento de algunos ítems, pertenencia a otro factor o presencia de correlación de errores por un mismo comienzo en el enunciado.</p>
+<p>Los índices de modificación son valores que nos brindarán una <strong>orientación</strong> acerca de la re-especificación de la estructura factorial evaluada inicialmente. Para ello usaremos la siguiente función:</p>
+<pre><code>  `modificationindices(fit)`</code></pre>
+<p>Veremos también cómo ver solo una parte de los IM (los más representativos)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Solicitar los 10 primeros IM con valores más altos</span>
+<span class="kw">modindices</span>(fit, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">maximum.number =</span> <span class="dv">10</span>)  </code></pre>
+<pre><code>##        lhs op rhs     mi    epc sepc.lv sepc.all sepc.nox
+## 30  visual =~  x9 36.411  0.577   0.519    0.515    0.515
+## 76      x7 ~~  x8 34.145  0.536   0.536    0.859    0.859
+## 28  visual =~  x7 18.631 -0.422  -0.380   -0.349   -0.349
+## 78      x8 ~~  x9 14.946 -0.423  -0.423   -0.805   -0.805
+## 33 textual =~  x3  9.151 -0.272  -0.269   -0.238   -0.238
+## 55      x2 ~~  x7  8.918 -0.183  -0.183   -0.192   -0.192
+## 31 textual =~  x1  8.903  0.350   0.347    0.297    0.297
+## 51      x2 ~~  x3  8.532  0.218   0.218    0.223    0.223
+## 59      x3 ~~  x5  7.858 -0.130  -0.130   -0.212   -0.212
+## 26  visual =~  x5  7.441 -0.210  -0.189   -0.147   -0.147</code></pre>
+<p>Los índices de modificación representan la disminución en el valor de chi-cuadrado que se produciría en caso se realizará lo sugerido. ¿Cómo saber cuando es importante? Va a depender de cada análisis, es distinto un modelo estructural con chi-cuadrado de 1500 de valor que presenta IM de 35 puntos; que un modelo estructural de chi-cuadrado 65 con el mismo valor en IM.</p>
+<p>Esta información se adiciona al “expected parameter change” (epc) y su valor estandarizado (sepc.all) para tener mayor noción del cambio a nivel estadístico que se realizaría.</p>
+<p>Antes de hacer caso a la sugerencia propuesta, <strong>RECORDAR</strong>, siempre debe primar el criterio metodológico. En caso de sugerir correlación de errores entre ítems, seguir estas sugerencias:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Buscar similitud en el contenido de ambos ítems que pueda haber propiciado una similar forma de producir error en la medición.</li>
+<li>Verificar si los ítems comparten una misma forma de finalizar o iniciar el enunciado.</li>
+<li>Si los items pertenecen a diferentes factores, tener mucho cuidado. Existe la posibilidad de que lo señalado como sugerencia solo se deba a aleatoridad en los datos. Si es que pese a ello se encontrase relación o motivos para suponer errores correlacionados entre dichos ítems, poner en alerta la integridad de la estructura factorial de la prueba.</li>
+</ol>
+<p>Con respecto a las sugerencias de que un ítem pertenezca a otro factor, tener en cuenta los siguientes puntos:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Existe la posibilidad de que un ítem verdaderamente deba pertenecer a otro factor. Generalmente sucede esto en pruebas nuevas o con pocos estudios psicométricos.</li>
+<li>De igual manera a la anterior condición, su señalamiento puede deberse a pura aleatoridad estadística.</li>
+<li>Si un mismo ítem aparece repetidamente en los IM y se sugiere que podría suponer un cambio importante en chi-cuadrado si se realizase la sugerencia, se debe tener en alerta a dicho ítem. Su exclusión del análisis puede mejorar la estructura factorial.</li>
+</ol>
+<p>Dicho lo anterior verificamos que los IM sugieren que habría un cambio de 36 puntos menos en el chi-cuadrado (valor actual de 85.3) si se modificase su pertenencia al factor visual. Mientras que si se correlaciona los errores del indicador 7 y 8, habría un cambio de 34.15, además de que la correlación sería de 0.86 (sepc.all).</p>
+<p>Recordemos que cada vez que se realiza una re-especificación en el modelo los IM cambian debido a que el ajuste del modelo también cambia. Así que no se recomienda hacer múltiples re-especificaciones a partir de un solo procedimiento de análisis para re-especificar. De uno en uno o de dos en dos si las incongruencias son más claras.</p>
+<p>Para efectos de aprendizaje, incluiremos una correlación de errores entre el indicador 7 y 8 para ver cómo se produce los cambios. Previo a ello guardaremos los índices de ajuste en un objeto que servirá para ir comparando los cambios realizados.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Procederemos a re-especificar creando un objeto con nombre &quot;model_02&quot;</span>
+model_<span class="dv">02</span> &lt;-<span class="st"> &quot; # Modelo de medición</span>
+<span class="st">              visual  =~ x1 + x2 + x3</span>
+<span class="st">              textual =~ x4 + x5 + x6</span>
+<span class="st">              speed   =~ x7 + x8 + x9 </span>
+<span class="st">              # Correlación de errores          </span>
+<span class="st">              x7 ~~ x8</span>
+<span class="st">            &quot;</span></code></pre>
+<p>Hemos agregado la re-especificación de la correlación entre errores.
+<strong>¡Estimemos nuevamente y veamos los resultados!</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Procederemos a re-especificar creando un objeto con nombre &quot;model_02&quot;</span>
+fit_<span class="dv">02</span> &lt;-<span class="st"> </span><span class="kw">cfa</span>(<span class="dt">model =</span> model_<span class="dv">02</span>, 
+              <span class="dt">data  =</span> datos)
+<span class="kw">summary</span>(fit_<span class="dv">02</span>, <span class="dt">fit.measures =</span> <span class="ot">TRUE</span>, <span class="dt">standardized =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>## lavaan 0.6-3 ended normally after 43 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                         22
+## 
+##   Number of observations                           301
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                      53.272
+##   Degrees of freedom                                23
+##   P-value (Chi-square)                           0.000
+## 
+## Model test baseline model:
+## 
+##   Minimum Function Test Statistic              918.852
+##   Degrees of freedom                                36
+##   P-value                                        0.000
+## 
+## User model versus baseline model:
+## 
+##   Comparative Fit Index (CFI)                    0.966
+##   Tucker-Lewis Index (TLI)                       0.946
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)              -3721.728
+##   Loglikelihood unrestricted model (H1)      -3695.092
+## 
+##   Number of free parameters                         22
+##   Akaike (AIC)                                7487.457
+##   Bayesian (BIC)                              7569.013
+##   Sample-size adjusted Bayesian (BIC)         7499.242
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.066
+##   90 Percent Confidence Interval          0.043  0.090
+##   P-value RMSEA &lt;= 0.05                          0.118
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.047
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+##   Standard Errors                             Standard
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##   visual =~                                                             
+##     x1                1.000                               0.885    0.759
+##     x2                0.576    0.098    5.898    0.000    0.509    0.433
+##     x3                0.752    0.103    7.289    0.000    0.665    0.589
+##   textual =~                                                            
+##     x4                1.000                               0.989    0.851
+##     x5                1.115    0.066   17.015    0.000    1.103    0.856
+##     x6                0.926    0.056   16.682    0.000    0.916    0.838
+##   speed =~                                                              
+##     x7                1.000                               0.383    0.352
+##     x8                1.244    0.194    6.414    0.000    0.477    0.471
+##     x9                2.515    0.641    3.924    0.000    0.963    0.956
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##  .x7 ~~                                                                 
+##    .x8                0.353    0.067    5.239    0.000    0.353    0.389
+##   visual ~~                                                             
+##     textual           0.400    0.073    5.511    0.000    0.457    0.457
+##     speed             0.184    0.054    3.423    0.001    0.544    0.544
+##   textual ~~                                                            
+##     speed             0.102    0.036    2.854    0.004    0.270    0.270
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##    .x1                0.576    0.101    5.678    0.000    0.576    0.424
+##    .x2                1.122    0.100   11.171    0.000    1.122    0.812
+##    .x3                0.832    0.087    9.552    0.000    0.832    0.653
+##    .x4                0.372    0.048    7.791    0.000    0.372    0.276
+##    .x5                0.444    0.058    7.600    0.000    0.444    0.267
+##    .x6                0.357    0.043    8.287    0.000    0.357    0.298
+##    .x7                1.036    0.090   11.501    0.000    1.036    0.876
+##    .x8                0.795    0.080    9.988    0.000    0.795    0.778
+##    .x9                0.088    0.188    0.466    0.641    0.088    0.086
+##     visual            0.783    0.135    5.810    0.000    1.000    1.000
+##     textual           0.978    0.112    8.729    0.000    1.000    1.000
+##     speed             0.147    0.056    2.615    0.009    1.000    1.000</code></pre>
+<p>A simple vista podemos ver una mejora importante en los índices de ajuste del modelo estimado. Ordenemos los datos y veamoslo en paralelo para entenderlo mejor.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Guardando los índices en objetos</span>
+<span class="kw">library</span>(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">fit_index &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">glance</span>(fit) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(chisq, npar, cfi, tli, rmsea, rmsea.conf.high, srmr, aic, bic, estimator)
+fit_index02 &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">glance</span>(fit_<span class="dv">02</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(chisq, npar, cfi, tli, rmsea, rmsea.conf.high, srmr, aic, bic, estimator)
+<span class="co"># Uniendo </span>
+<span class="kw">bind_rows</span>(fit_index, fit_index02, <span class="dt">.id =</span> <span class="st">&quot;Modelo&quot;</span>)</code></pre>
+<pre><code>## # A tibble: 2 x 11
+##   Modelo chisq  npar   cfi   tli  rmsea rmsea.conf.high   srmr   aic   bic
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 1       85.3    21 0.931 0.896 0.0921          0.114  0.0652 7517. 7595.
+## 2 2       53.3    22 0.966 0.946 0.0661          0.0895 0.0471 7487. 7569.
+## # ... with 1 more variable: estimator &lt;chr&gt;</code></pre>
+<p>¡Listo! Estamos viendo que el modelo 2 muestra una mejora importante en la estructura factorial de la prueba. Es decir, tener en consideración que los errores de indicador <strong>7</strong> y <strong>8</strong> se encuentran correlacionados permite un mejor ajuste en lo mostrado por la matriz de covarianza empírica y la teórica (especificado).</p>
+<p>Antes de cantar victoria, volvamos a verificar los IM para ver si hay más cambios importantes sugeridos al modelo.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Solicitar los 10 primeros IM con valores más altos</span>
+<span class="kw">modindices</span>(fit_<span class="dv">02</span>, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">maximum.number =</span> <span class="dv">10</span>)  </code></pre>
+<pre><code>##        lhs op rhs    mi    epc sepc.lv sepc.all sepc.nox
+## 34 textual =~  x3 9.057 -0.257  -0.254   -0.225   -0.225
+## 32 textual =~  x1 8.734  0.313   0.309    0.265    0.265
+## 60      x3 ~~  x5 8.712 -0.136  -0.136   -0.223   -0.223
+## 67      x4 ~~  x7 8.117  0.112   0.112    0.181    0.181
+## 56      x2 ~~  x7 7.266 -0.160  -0.160   -0.148   -0.148
+## 52      x2 ~~  x3 6.536  0.181   0.181    0.187    0.187
+## 27  visual =~  x5 6.076 -0.191  -0.169   -0.131   -0.131
+## 29  visual =~  x7 5.438 -0.231  -0.204   -0.188   -0.188
+## 66      x4 ~~  x6 5.367 -0.222  -0.222   -0.609   -0.609
+## 30  visual =~  x8 5.049  0.276   0.244    0.242    0.242</code></pre>
+<p>Genial, parece ser que los IM mostrados no son tan altos ni el <strong>sepc.all</strong> representa un cambio importante al modelo estimado. Tenemos entonces un modelo estructural comprobado… ¡Espera! ¿Hemos revisado la distribución
+de los datos? Ups… Verifiquemos si se tiene una distribución normal
+multivariada. Para ello usaremos la función “mvn” del paquete “MVN”.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduccion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/brianmsm/manual-lavaan/edit/master/02-Primeros-pasos.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Manual-Lavaan.pdf", "Manual-Lavaan.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>
