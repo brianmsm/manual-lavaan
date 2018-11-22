@@ -26,3 +26,6 @@ Puedes aperturar un tema en [**Issues**](https://github.com/brianmsm/manual-lava
 - [ ] Invarianza
 - [ ] Invarianza longitudinal
 - [ ] Procedimientos de AFC en muestras complejas
+
+![Creative Commons License](https://brianmsm.github.io/manual-lavaan/images/CC-BY-SA-4.0.png)  
+La versión en línea del presente manual se encuentra bajo la licencia [Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/). 
