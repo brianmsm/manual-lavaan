@@ -1,0 +1,11 @@
+`r if (knitr::is_html_output()) '
+# Referencias {-}
+'`
+
+```{r include=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'htmlwidgets', 'webshot', 
+  'DT', 'miniUI', 'tufte', 'servr', 'citr', 'rticles', "lavaan",
+  "tidyverse", "semTools", "semPlot", "psych", "MVN"), 'packages.bib')
+```
+

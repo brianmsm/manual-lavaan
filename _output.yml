@@ -1,0 +1,22 @@
+bookdown::gitbook:
+  css: style.css
+  split_by: chapter # chapter none
+  split_bib: NO
+  config:
+    toc:
+      collapse: section
+      scroll_highlight: yes
+      before: |
+        <li><a href="./">Potencia de R para el Análisis Factorial Confirmatorio (SEM)</a></li>
+      after: |
+        <li><a href="https://github.com/brianmsm/manual-lavaan" target="blank">Publicado en Github</a></li>
+    search: yes
+    edit: https://github.com/brianmsm/manual-lavaan/edit/master/%s
+    download: ["pdf", "epub"]
+    sharing:
+        github: yes
+        twitter: yes
+        facebook: yes
+bookdown::epub_book:
+  dev: svglite
+  stylesheet: css/style.css

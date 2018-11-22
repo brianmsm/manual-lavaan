@@ -1,0 +1,43 @@
+--- 
+title: "Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)"
+author: Brian N. Peña Calero^(1,2,^*^)^
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+csl: apa-old-doi-prefix.csl
+link-citations: yes
+colorlinks: yes
+github-repo: rstudio/bookdown-demo
+description: "Este es una breve guía acerca de los fundamentos y procedimientos actuales sobre Análisis Factorial Confirmatorio (SEM)."
+cover-image: images/conver-temp.png
+---
+
+# Carátula {-}
+
+(1) Sociedad Peruana de Psicometría (SPP)
+(2) Avances en Medición Psicológica (AMP) 
+
+`*` Correspondencia al Autor.  Dirección de E-mail: brianmsm@gmail.com
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.link='https://www.crcpress.com/product/isbn/9781138700109'}
+knitr::include_graphics('images/conver-temp.png', dpi = NA)
+```
+
+# Presentación {-}
+
+Esta breve guía presenta dos ejes principales: a) Los fundamentos y usos del Análisis Factorial Confirmatorio (CFA) de acuerdo a los estándares actuales y b) El uso del paquete R **lavaan** [@R-lavaan] para su ejecución en el análisis psicométrico (construcción de pruebas, adaptación, validación y/o estudio de propiedades). A pesar de que existen actualmente una cantidad considerable de software (mayormente privativos) que permiten el desarrollo de un AFC, pocos de ellos tienen implementados los procedimientos necesarios a desarrollar (consideración de variables ordinales por ej.).
+
+Esta guía-manual permitirá entender lo principal acerca del desarrollo de un AFC tanto para las personas que se encuentren interesadas en implementarlos con el paquete lavaan de R [@R-base], como aquellas que deseen hacerlo mediante otro software de análisis. Se parte desde la simplicidad de los modelos factoriales hasta aspectos más específicos y particulares. El objetivo es generar un aprendizaje guiado, de fácil implementación (cuando el objetivo sea así) y de robusta implementación (cuando así se requiera). 
+
+La guía se encuentra escrita en R mediante el paquete Bookdown [@R-bookdown] que implementa el estilo GitBook (https://www.gitbook.com) para la presentación de libros y/o documentos (manuales) en formato HTML (tipo página web) y la posibilidad de exportarlo a otros formatos como pdf y epub. Además, se encuentra alojado en **Gitlab** y **Github** a fin de poder recibir aporte de todas las personas que se encuentren interesadas en corregir, sugerir cambios y/o adicionar información que se considere de importancia. 
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.link='http://www.openaccessperu.org'}
+knitr::include_graphics('images/openaccess.png', dpi = NA)
+```
+
+El presente manual y los insumos utilizados para su creación siguen los lineamientos del [software libre](https://www.gnu.org/philosophy/free-sw.es.html), [código abierto](https://opensource.org/), [ciencia abierta](https://www.fosteropenscience.eu/content/what-open-science-introduction) y [acceso abierto](http://www.openaccessperu.org). Por consiguiente todos los materiales utilizados para su creación se encuentran disponibles para todos los usuarios interesados.
+
+![Creative Commons License](images/CC-BY-SA-4.0.png)  
+La versión en línea del presente manual se encuentra bajo la licencia [Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/). 

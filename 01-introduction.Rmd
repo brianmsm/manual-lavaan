@@ -1,0 +1,65 @@
+\mainmatter
+
+# Introducción
+
+Este manual es una guía para el entendimiento de los fundamentos del Análisis Factorial Confirmatorio (AFC) y su desarrollo mediante el software R y el paquete **lavaan** mayormente. Para fines de presentación de resultados y análisis adicionales se hará uso de otros paquetes de R como **psych** [@R-psych] para análisis descriptivo de los ítems; **MVN** [@R-MVN] para el análisis de normalidad multivariada; **semTools** [@R-semTools] para el cálculo de fiabilidad a partir del modelo evaluado; y **semPlot** [@R-semPlot] para la generación de gráficos a partir del modelo evaluado.
+
+No es el objetivo del presente manual ser un libro de consulta o brindar información técnica específica y especializada sobre los fundamentos de los análisis, por el contrario se busca brindar la información actualizada y pertinente de forma entendible y directa, sin descuidar en el proceso los fundamentos esenciales.
+
+Esta guía tiene en pendiente abordar los principales usos de AFC desde los procesos más básicos hasta los más completos para fines de investigación instrumental. Aún está en proceso de desarrollo por lo que se anuncia la planificación existente:
+- Fundamentos básicos del AFC: Diferencias con AFE.
+- Revisión de los estimadores clásicos y robustos
+- AFC de primer orden
+- AFC de segundo orden
+- Modelos Bifactor
+- Modelos multidimensionales
+- Invarianza 
+- Invarianza longitudinal
+- Procedimientos de AFC en muestras complejas
+
+## Fundamentos de Análisis Factorial Confirmatorio
+
+El *análisis factorial confirmatorio* (CFA) es considerado como una forma de *modelo de ecuaciones estructurales* (SEM) que tiene como propósito el analizar los modelos de medición, es decir, la estructura y conformación de ítems, indicadores y/o estimulos a una variable latente (constructo) previamente hipotetizada [@brown2015].
+
+La hipotetización acerca del modelo estructural es indispensable en el **AFC** y debe estar considerada de forma sólida, al menos lo suficiente para poder explicar un buen o mal ajuste, y/o modificaciones que se realicen sobre el modelo de medición. Cuando no existe una estructura hipótetica o la estructura del modelo de medición (instrumento o test) se encuentra cuestionada, se prefiere un *análisis factorial exploratorio* (AFE) en el que se encuentre de forma exploratoria las relaciones de los ítems y/o indicadores a la variable latente [@beaujean2014].
+
+De esta forma el AFC permite **confirmar** la estructura factorial de un instrumento propuesto siempre y cuando el proceso de construcción del mismo tenga los requerimientos mínimos necesarios para hipotetizar sobre el mismo. 
+
+No se pretende hacer una descripción matemática acerca de los procedimientos que subyacen el *AFC*, por lo que se brinda una idea y/o noción general que permita entenderlo, cuestionar y/o discutir sobre ello. El *AFC* al ser una forma 
+
+
+## Procedimientos para realizar un AFC
+Para realizar un AFC en un instrumento de medición se debe tener en cuenta los siguientes procedimientos:
+
+1. Especificación: Estructura factorial de la prueba.
+2. Identificación: Información suficiente (gl).
+3. Estimación: Matriz teórica vs matriz empírica
+4. Evaluación: ¿La estimación es correcta?
+5. Reespecificación: Modificación a la estructura factorial para mejorar el ajuste al modelo.
+
+
+## Algunas sugerencias y materiales de lectura
+
+En preparación.
+
+## Preparándonos
+
+Para realizar análisis específicos como lo es el AFC o SEM, R requiere de paquetes especializados para su propósito (que traen consigo, funciones especializadas). Existen diversos paquetes para realizar un AFC, entre los más comunes está OpenMX, CFA, sem y lavaan. 
+
+En nuestro caso usaremos el último en mención por ser uno de los más consolidados en la actualidad, ofrecer mayor facilidad de manejo y tener en su desarrollo los últimos avances en AFC provenientes en gran parte de Mplus y aportes propios.
+
+En primer lugar requerimos tener instalado R [@R-base] en nuestra computadora y/o laptop, además de la IDE Rstudio que nos facilitará el proceso de escritura en código. Sobre ello instalaremos algunas paqueterías además de **lavann** que complementarán nuestro análisis.
+
+1. Descargar el software R desde [R-project](https://www.r-project.org/). Elegir el método de descarga de acuerdo al sistema operativo de su computadora y/o laptop. En el caso más probable de sistema operativo Windows seguir las instrucciones de [aquí](https://cloud.r-project.org/bin/windows/base/); en el caso de SO MacOs, [aquí](https://cloud.r-project.org/bin/macosx/); mientras que en caso de usar alguna distribución GNU/Linux, puede seguir las instrucciones de [aquí](https://cloud.r-project.org/bin/linux/).
+2. Instalar la IDE RStudio que nos permitirá tener una espacio de escritura más robusta. Para ello puedes descargar la [última versión disponible](https://www.rstudio.com/products/rstudio/download/#download) (a la fecha 1.1.463).
+3. Instalar el paquete **lavaan** y los complementarios listados a continuación:
+
+    ```{r eval=FALSE}
+    # Instalando lavaan
+    install.packages("lavaan", dependencies = TRUE)
+    # Instalar los paquetes complementarios
+    install.packages(c("tidyverse", "semTools", "semPlot", 
+                       "psych", "MVN"), dependencies = TRUE) 
+    ```
+
+4. Ya nos encontramos listos para poder utilizar Rstudio con los paquetes configurados.
