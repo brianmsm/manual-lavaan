@@ -4,4 +4,23 @@ Esta breve guía presenta dos ejes principales: a) Los fundamentos y usos del An
 
 La guía se encuentra escrita en R mediante el paquete Bookdown que implementa el estilo GitBook (https://www.gitbook.com) para la presentación de libros y/o documentos (manuales) en formato HTML (tipo página web) y la posibilidad de exportarlo a otros formatos como pdf y epub. Además, se encuentra alojado en **Gitlab** y **Github** a fin de poder recibir aporte de todas las personas que se encuentren interesadas en corregir, sugerir cambios y/o adicionar información que se considere de importancia. 
 
-[![Everything Is AWESOME](https://brianmsm.github.io/manual-lavaan/images/openaccess.png)](https://brianmsm.github.io/manual-lavaan/images/openaccess.png "Open Access")
+[![Open Access](https://brianmsm.github.io/manual-lavaan/images/openaccess.png)](https://brianmsm.github.io/manual-lavaan/images/openaccess.png "Open Access")
+
+## Cómo Contribuir
+
+Puedes ayudar y contribuir al desarrollo de esta guía-manual puedes hacer más que escribir código (si puedes hacerlo bienvenido seas). Es importante también incluir documentación, comentarios, sugerencias, correcciones o peticiones a la información que ya se encuentra presente, así como agregar ejemplos o brindar base de datos que puedan ser utilizados a modo de aprendizaje. Este proyecto necesita de personas como tú. Existe un [código de conducta] (https://github.com/brianmsm/manual-lavaan/blob/master/Codigo_Conducta.md) para asegurarnos de que todos se sientan seguros y bienvenidos.
+
+**¡Gracias por tu ayuda!**
+
+## Pendientes
+
+**Lista de cosas que se han realizado y quedan por realizar**
+
+- [x] Fundamentos básicos del AFC (completar)
+- [x] AFC de primer orden (completar): Estimadores robustos
+- [ ] AFC de segundo orden
+- [ ] Modelos bifactor
+- [ ] Modelos multidimensionales
+- [ ] Invarianza
+- [ ] Invarianza longitudinal
+- [ ] Procedimientos de AFC en muestras complejas
