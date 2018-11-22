@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)</title>
+  <meta name="description" content="Este es una breve guía acerca de los fundamentos y procedimientos actuales sobre Análisis Factorial Confirmatorio (SEM).">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/conver-temp.png" />
+  <meta property="og:description" content="Este es una breve guía acerca de los fundamentos y procedimientos actuales sobre Análisis Factorial Confirmatorio (SEM)." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)" />
+  
+  <meta name="twitter:description" content="Este es una breve guía acerca de los fundamentos y procedimientos actuales sobre Análisis Factorial Confirmatorio (SEM)." />
+  <meta name="twitter:image" content="images/conver-temp.png" />
+
+<meta name="author" content="Brian N. Peña Calero(1,2,*)">
+
+
+<meta name="date" content="2018-11-22">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="primeros-pasos-en-el-analisis.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Potencia de R para el Análisis Factorial Confirmatorio (SEM)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Carátula</a></li>
+<li class="chapter" data-level="" data-path="presentacion.html"><a href="presentacion.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#fundamentos-de-analisis-factorial-confirmatorio"><i class="fa fa-check"></i><b>1.1</b> Fundamentos de Análisis Factorial Confirmatorio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#procedimientos-para-realizar-un-afc"><i class="fa fa-check"></i><b>1.2</b> Procedimientos para realizar un AFC</a></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#algunas-sugerencias-y-materiales-de-lectura"><i class="fa fa-check"></i><b>1.3</b> Algunas sugerencias y materiales de lectura</a></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#preparandonos"><i class="fa fa-check"></i><b>1.4</b> Preparándonos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html"><i class="fa fa-check"></i><b>2</b> Primeros pasos en el Análisis</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html#importar-datos-y-reconocer-variables"><i class="fa fa-check"></i><b>2.1</b> Importar datos y reconocer variables</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html#sintaxis-de-lavaan-especificacion"><i class="fa fa-check"></i><b>2.2</b> Sintaxis de Lavaan (Especificación)</a></li>
+<li class="chapter" data-level="2.3" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html#identificacion-estimacion-y-evaluacion"><i class="fa fa-check"></i><b>2.3</b> Identificación, Estimación y Evaluación</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-pasos-en-el-analisis.html"><a href="primeros-pasos-en-el-analisis.html#re-especificacion"><i class="fa fa-check"></i><b>2.4</b> Re-Especificación</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/brianmsm/manual-lavaan" target="blank">Publicado en Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Una guía amigable para el uso de Lavaan: Potencia de R para el Análisis Factorial Confirmatorio (SEM)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="referencias" class="section level1 unnumbered">
+<h1>Referencias</h1>
+
+<div id="refs" class="references">
+<div id="ref-beaujean2014">
+<p>Beaujean, A. A. (2014). <em>Latent variable modeling using R: A step by step guide</em>. New York: Routledge/Taylor &amp; Francis Group.</p>
+</div>
+<div id="ref-brown2015">
+<p>Brown, T. A. (2015). <em>Confirmatory factor analysis for applied research</em> (Second edition). New York ; London: The Guilford Press.</p>
+</div>
+<div id="ref-R-semPlot">
+<p>Epskamp, S., &amp; Simon Stuber. (2017). <em>SemPlot: Path diagrams and visual analysis of various sem packages’ output</em>. <a href="https://CRAN.R-project.org/package=semPlot">https://CRAN.R-project.org/package=semPlot</a></p>
+</div>
+<div id="ref-holzinger1939">
+<p>Holzinger, K., &amp; Swineford, F. (1939). A study in factor analysis: The stability of a bifactor solution. <em>Supplementary Educational Monograph</em>, <em>48</em>.</p>
+</div>
+<div id="ref-R-semTools">
+<p>Jorgensen, T. D., Pornprasertmanit, S., Schoemann, A., &amp; Rosseel, Y. (2018). <em>SemTools: Useful tools for structural equation modeling</em>. <a href="https://CRAN.R-project.org/package=semTools">https://CRAN.R-project.org/package=semTools</a></p>
+</div>
+<div id="ref-R-MVN">
+<p>Korkmaz, S., Goksuluk, D., &amp; Zararsiz, G. (2018). <em>MVN: Multivariate normality tests</em>. <a href="https://CRAN.R-project.org/package=MVN">https://CRAN.R-project.org/package=MVN</a></p>
+</div>
+<div id="ref-R-base">
+<p>R Core Team. (2018). <em>R: A language and environment for statistical computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a></p>
+</div>
+<div id="ref-R-psych">
+<p>Revelle, W. (2018). <em>Psych: Procedures for psychological, psychometric, and personality research</em>. <a href="https://CRAN.R-project.org/package=psych">https://CRAN.R-project.org/package=psych</a></p>
+</div>
+<div id="ref-R-lavaan">
+<p>Rosseel, Y. (2018). <em>Lavaan: Latent variable analysis</em>. <a href="https://CRAN.R-project.org/package=lavaan">https://CRAN.R-project.org/package=lavaan</a></p>
+</div>
+<div id="ref-R-bookdown">
+<p>Xie, Y. (2018). <em>Bookdown: Authoring books and technical documents with r markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a></p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="primeros-pasos-en-el-analisis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/brianmsm/manual-lavaan/edit/master/10-references.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Manual-Lavaan.pdf", "Manual-Lavaan.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>
