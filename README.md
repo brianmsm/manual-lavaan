@@ -10,7 +10,7 @@ La guía se encuentra escrita en R mediante el paquete Bookdown que implementa e
 
 Puedes ayudar y contribuir al desarrollo de esta guía-manual puedes hacer más que escribir código (si puedes hacerlo bienvenido seas). Es importante también incluir documentación, comentarios, sugerencias, correcciones o peticiones a la información que ya se encuentra presente, así como agregar ejemplos o brindar base de datos que puedan ser utilizados a modo de aprendizaje. Este proyecto necesita de personas como tú. Existe un [código de conducta] (https://github.com/brianmsm/manual-lavaan/blob/master/Codigo_Conducta.md) para asegurarnos de que todos se sientan seguros y bienvenidos.
 
-Puedes aperturar un tema en **[Issues]**(https://github.com/brianmsm/manual-lavaan/issues).
+Puedes aperturar un tema en [**Issues**](https://github.com/brianmsm/manual-lavaan/issues).
 
 **¡Gracias por tu ayuda!**
 
